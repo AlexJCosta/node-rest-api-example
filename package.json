@@ -1,0 +1,22 @@
+{
+  "name": "rest-api-example",
+  "version": "1.0.0",
+  "description": "project example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexJCosta/node-rest-api-example.git"
+  },
+  "author": "alex costa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexJCosta/node-rest-api-example/issues"
+  },
+  "homepage": "https://github.com/AlexJCosta/node-rest-api-example#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
