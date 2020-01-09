@@ -10,6 +10,8 @@ db.sequelize
     .then(async () => {
        
         await db.sequelize.sync();
+
+        //await db.sequelize.drop();
     
         //express config
         app.use(express.json());

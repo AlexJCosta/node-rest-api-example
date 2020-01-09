@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4');
 const User = require('../sequelizeModels').User;
 
 module.exports = {
@@ -10,6 +11,20 @@ module.exports = {
         const users = await User.findAll();
 
         result = users;
+        messages.push('Success!');
+        statusCode = 200;
+
+        return res.status(statusCode).json({ result, messages });
+    },
+
+    async add(req, res) {
+        let result = {};
+        let messages = [];
+        let statusCode = 500;
+        let { name, email } = req.body;
+
+        result = await User.create({id: uuid(), name, email});
+
         messages.push('Success!');
         statusCode = 200;
 
