@@ -17,6 +17,26 @@ module.exports = {
         return res.status(statusCode).json({ result, messages });
     },
 
+    async getById(req, res) {
+        let result = {};
+        let messages = [];
+        let statusCode = 500;
+        let targetId = req.params.id;
+
+        const user = await User.findOne({ where: { id: targetId } });
+
+        if (user) {
+            result = user;
+            messages.push('Success!');
+            statusCode = 200;
+        }else{
+            messages.push("User not found!");
+            statusCode = 404;
+        }
+
+        return res.status(statusCode).json({ result, messages });
+    },
+
     async add(req, res) {
         let result = {};
         let messages = [];
