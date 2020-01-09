@@ -1,5 +1,6 @@
 const uuid = require('uuid/v4');
 const User = require('../sequelizeModels').User;
+const validator = require('./userValidator');
 
 module.exports = {
 
@@ -43,10 +44,19 @@ module.exports = {
         let statusCode = 500;
         let { name, email } = req.body;
 
-        result = await User.create({id: uuid(), name, email});
+        const { isValid, invalidFields, errors }  = validator.add({name});
 
-        messages.push('Success!');
-        statusCode = 200;
+        if (isValid) {
+            result = await User.create({id: uuid(), name, email});
+    
+            messages.push('Success!');
+            statusCode = 200;
+        }else {
+            result = invalidFields;
+            errors.map(error => messages.push(error));
+            statusCode = 422;
+        }
+
 
         return res.status(statusCode).json({ result, messages });
     },
