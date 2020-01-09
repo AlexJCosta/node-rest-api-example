@@ -11,6 +11,7 @@ db.sequelize
        
         await db.sequelize.sync();
 
+        //used to remover all data tables
         //await db.sequelize.drop();
     
         //express config
