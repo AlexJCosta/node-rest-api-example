@@ -1,1 +1,3 @@
-# node-rest-api-example
+# Rest API Node
+
+Project example to studying.
