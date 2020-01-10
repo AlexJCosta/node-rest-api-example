@@ -1,6 +1,7 @@
 const uuid = require('uuid/v4');
 const User = require('../sequelizeModels').User;
 const Address = require('../sequelizeModels').Address;
+const auth = require('../auth/authController');
 const validator = require('./userValidator');
 
 module.exports = {
@@ -23,17 +24,25 @@ module.exports = {
         let result = {};
         let messages = [];
         let statusCode = 500;
+        let userRequestId = req.headers.id;
         let targetId = req.params.id;
+        
+        const authorized = await auth.checkAccess(userRequestId);
 
-        const user = await User.findOne({ where: { id: targetId } });
+        if (authorized) {
+            const user = await User.findOne({ where: { id: targetId } });
 
-        if (user) {
-            result = user;
-            messages.push('Success!');
-            statusCode = 200;
+            if (user) {
+                result = user;
+                messages.push('Success!');
+                statusCode = 200;
+            }else{
+                messages.push("User not found!");
+                statusCode = 404;
+            }
         }else{
-            messages.push("User not found!");
-            statusCode = 404;
+            messages.push("User not authorized!");
+            statusCode = 401;
         }
 
         return res.status(statusCode).json({ result, messages });
