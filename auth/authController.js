@@ -9,7 +9,7 @@ module.exports = {
         let user = await User.findOne({ where: { id } });
 
         if (user) {
-            if (user.role = 'admin') {
+            if (user.role == 'admin') {
                 result = true;
             }
         }
