@@ -21,4 +21,9 @@ const addressController = require('./address/addressController');
 router.get('/addresses', addressController.index);
 router.post('/addresses', addressController.add);
 
+//Routers to contact controller
+const contatcController = require('./contact/contactController');
+router.get('/contacts', contatcController.index);
+router.post('/contacts', contatcController.add);
+
 module.exports = router;
