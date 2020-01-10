@@ -9,6 +9,7 @@ db.sequelize
     .authenticate()
     .then(async () => {
        
+        //await db.sequelize.sync({ force: true });
         await db.sequelize.sync();
 
         //used to remover all data tables

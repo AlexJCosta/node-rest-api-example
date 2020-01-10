@@ -52,12 +52,12 @@ module.exports = {
         let result = {};
         let messages = [];
         let statusCode = 500;
-        let { name, email, addressId, contactId } = req.body;
+        let { name, email, addressId, contactId, role } = req.body;
 
         const { isValid, invalidFields, errors }  = validator.add({name});
 
         if (isValid) {
-            result = await User.create({id: uuid(), name, email, addressId, contactId});
+            result = await User.create({id: uuid(), name, email, addressId, contactId, role});
     
             messages.push('Success!');
             statusCode = 200;
