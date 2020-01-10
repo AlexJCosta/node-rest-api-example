@@ -16,4 +16,9 @@ router.patch('/users/:id', userController.update);
 router.delete('/users/:id', userController.deleteById);
 router.get('/users/:id', userController.getById);
 
+//Routers to address controller
+const addressController = require('./address/addressController');
+router.get('/addresses', addressController.index);
+router.post('/addresses', addressController.add);
+
 module.exports = router;
